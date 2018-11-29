@@ -27,9 +27,9 @@ node {
 		 * Second, the 'latest' tag.
 		 * Pushing multiple tags is cheap, as all the layers are reused. */
 
-		sh 'docker login rspdevops.azurecr.io -u rspdevops -p tuFE+dQzKdx1RdIjAUk56wN3DqmBmNMf'
-        sh 'docker tag hellonode rspdevops.azurecr.io/hellonode' 
-        sh 'docker push rspdevops.azurecr.io/hellonode'
-        sh 'docker push rspdevops.azurecr.io/hellonode:${env.BUILD_NUMBER}'
+		docker.withRegistry('https://rspdevops.azurecr.io', 'rspdevops-azure-docker-hub-credentials') {		
+			app.push("latest")
+            app.push("${env.BUILD_NUMBER}")
+		} 
 	}
 }
