@@ -27,7 +27,7 @@ node {
 		 * Second, the 'latest' tag.
 		 * Pushing multiple tags is cheap, as all the layers are reused. */
 
-		sh 'docker login rspdevops.azurecr.io -u rspdevops -p tuFE+dQzKdx1RdIjAUk56wN3DqmBmNMf'
+	sh 'docker login rspdevops.azurecr.io -u rspdevops -p tuFE+dQzKdx1RdIjAUk56wN3DqmBmNMf'
         sh 'docker tag hellonode rspdevops.azurecr.io/hellonode' 
         sh 'docker push rspdevops.azurecr.io/hellonode'
         sh 'docker push rspdevops.azurecr.io:${env.BUILD_NUMBER}'
