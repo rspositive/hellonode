@@ -9,7 +9,7 @@ node {
 		/* This builds the actual image; synonymous to
 		 * docker build on command line */
 
-		app = docker.build("getintodevops/hellonode") 
+		app = docker.build("gettinintodevops/hellonode") 
 	}
 
 	stage('Test Image') {
@@ -27,9 +27,8 @@ node {
 		 * Second, the 'latest' tag.
 		 * Pushing multiple tags is cheap, as all the layers are reused. */
 
-		docker.withRegistry('https://rspdevops.azurecr.io', 'rspdevops-azure-docker-hub-credentials') {
-			app.push("${env.BUILD_NUMBER}")
-			app.push("latest")
-		} 
+		sh 'docker login rspdevops.azurecr.io -u rspdevops -p tuFE+dQzKdx1RdIjAUk56wN3DqmBmNMf'
+        sh 'docker push rspdevops/app:${env.BUILD_NUMBER}'
+        sh 'docker push rspdevops/app:latest'
 	}
 }
