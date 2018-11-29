@@ -9,7 +9,7 @@ node {
 		/* This builds the actual image; synonymous to
 		 * docker build on command line */
 
-		app = docker.build("gettinintodevops/hellonode") 
+		app = docker.build("rspositive/hellonode") 
 	}
 
 	stage('Test Image') {
@@ -28,7 +28,7 @@ node {
 		 * Pushing multiple tags is cheap, as all the layers are reused. */
 
 		sh 'docker login rspdevops.azurecr.io -u rspdevops -p tuFE+dQzKdx1RdIjAUk56wN3DqmBmNMf'
-        sh 'docker push rspdevops/app:${env.BUILD_NUMBER}'
-        sh 'docker push rspdevops/app:latest'
+        sh 'docker push rspdevops/hellonode:${env.BUILD_NUMBER}'
+        sh 'docker push rspdevops/hellonode:latest'
 	}
 }
