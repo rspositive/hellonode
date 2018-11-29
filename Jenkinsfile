@@ -9,7 +9,7 @@ node {
 		/* This builds the actual image; synonymous to
 		 * docker build on command line */
 
-		app = docker.build("rspdevops/hellonode") 
+		app = docker.build("hellonode") 
 	}
 
 	stage('Test Image') {
