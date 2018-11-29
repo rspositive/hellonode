@@ -28,7 +28,8 @@ node {
 		 * Pushing multiple tags is cheap, as all the layers are reused. */
 
 		sh 'docker login rspdevops.azurecr.io -u rspdevops -p tuFE+dQzKdx1RdIjAUk56wN3DqmBmNMf'
-        sh 'docker push rspdevops/hellonode:${env.BUILD_NUMBER}'
-        sh 'docker push rspdevops/hellonode:latest'
+        sh 'docker tag hellonode rspdevops.azurecr.io/hellonode' 
+        sh 'docker push rspdevops.azurecr.io/hellonode'
+        sh 'docker push rspdevops.azurecr.io:${env.BUILD_NUMBER}'
 	}
 }
